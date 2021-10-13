@@ -19,6 +19,15 @@ export function Data() {
         <h3 className={clsx('font-bold')}>MEMO at epoch {compound.length}</h3>
         <h4>{compound[compound.length - 1].toFixed(4)}</h4>
       </div>
+      <div className={clsx('data-point')}>
+        <h3 className={clsx('font-bold')}>USD Value at epoch {compound.length}</h3>
+        <h4>
+          {Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(compound[compound.length - 1] * 7000)}
+        </h4>
+      </div>
     </div>
   ) : null
 }
