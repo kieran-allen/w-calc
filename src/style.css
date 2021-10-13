@@ -1,3 +1,59 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+body {
+  @apply mt-12;
+  @apply from-blue-600 to-purple-500 bg-gradient-to-r;
+}
+
+h1 {
+  @apply text-5xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+.header {
+  @apply flex flex-col gap-3;
+}
+
+.container {
+  @apply bg-white shadow-lg rounded p-6 mx-auto;
+}
+
+.link {
+  @apply underline;
+}
+
+.input-container {
+  @apply flex flex-col gap-3;
+}
+
+input {
+  @apply border rounded p-3;
+}
+
+input[type='submit'] {
+  @apply rounded p-3 cursor-pointer;
+  @apply from-blue-600 to-blue-500 bg-gradient-to-r text-white font-bold;
+}
+
+form {
+  @apply flex flex-col gap-3;
+}
+
+.data {
+  @apply grid grid-cols-2 gap-3 mt-12;
+}
+
+.data-point {
+  @apply from-gray-100 to-gray-200 bg-gradient-to-r text-black rounded shadow-lg p-12;
+}

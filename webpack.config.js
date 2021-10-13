@@ -5,14 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = () => {
   const mode = process.env.NODE_ENV
   const isProduction = mode === 'production'
+  const style = isProduction ? MiniCssExtractPlugin.loader : 'style-loader'
   return {
     mode,
     devServer: {
       historyApiFallback: true,
       port: 3000,
-      hot: true,
     },
-    ...(!isProduction ? { devtool: 'source-map' } : {}),
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
       clean: true,
@@ -31,7 +30,7 @@ module.exports = () => {
         },
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+          use: [style, 'css-loader', 'postcss-loader'],
         },
       ],
     },

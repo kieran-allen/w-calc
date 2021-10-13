@@ -1,9 +1,14 @@
 import clsx from 'clsx'
+import { Data } from './components/Data'
+import { Form } from './components/Form'
+import { Header } from './components/Header'
 
 export function App() {
   return (
-    <h1 className={clsx('bg-gray-100', 'm-8', 'rounded', 'p-8', 'shadow')}>
-      Let us begin...
-    </h1>
+    <div className={clsx('container')}>
+      <Header />
+      <Form />
+      <Data />
+    </div>
   )
 }
