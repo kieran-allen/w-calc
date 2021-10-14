@@ -32,7 +32,7 @@ export function Form() {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormInput label="Current Memo" name="currentMemo" />
+        <FormInput label="Current MEMO" name="currentMemo" />
         <FormInput label="Reward Yield/Epoch" name="rewardYieldPerEpoch" />
         <FormInput label="Days" name="days" />
         <input type="submit" value="Calculate" />
