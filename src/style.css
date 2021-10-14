@@ -25,11 +25,11 @@
     @apply text-3xl;
   }
   input {
-    @apply border rounded p-3 dark:bg-gray-700 border-transparent;
+    @apply border rounded p-3 dark:bg-gray-700 dark:border-transparent;
   }
 
   input[type='submit'] {
-    @apply rounded p-3 cursor-pointer font-bold bg-gradient-to-r mt-6;
+    @apply rounded p-3 cursor-pointer font-bold bg-gradient-to-r mt-6 text-white;
     @apply from-blue-600 to-blue-500;
     @apply dark:from-blue-900 dark:to-purple-900;
   }
@@ -65,8 +65,7 @@
   }
 
   .data-point {
-    @apply rounded shadow p-12 bg-gradient-to-r;
-    @apply from-gray-100 to-gray-200;
-    @apply dark:from-gray-700 dark:to-gray-700;
+    @apply rounded shadow p-12;
+    @apply bg-gray-100 dark:bg-gray-700;
   }
 }

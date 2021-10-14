@@ -8,15 +8,23 @@ export function Header() {
         A calculator to help us all understand the potential returns from
         staking{' '}
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           className={clsx('link')}
           href="https://www.coingecko.com/en/coins/wonderland"
         >
           $TIME
         </a>{' '}
         at{' '}
-        <a className={clsx('link')} href="https://app.wonderland.money">
+        <a
+          className={clsx('link')}
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://app.wonderland.money"
+        >
           wonderland.money
-        </a>.
+        </a>
+        .
       </p>
     </header>
   )

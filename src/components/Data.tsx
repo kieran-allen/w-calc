@@ -1,12 +1,14 @@
 import clsx from 'clsx'
+
 import { DataPoint } from './DataPoint'
 
 type Props = {
   data: number[]
   label: string
+  priceInMIM: number
 }
 
-export function Data({ data, label }: Props) {
+export function Data({ data, label, priceInMIM }: Props) {
   return data.length ? (
     <div>
       <h2 className={clsx('mb-3')}>{label}</h2>
@@ -21,7 +23,7 @@ export function Data({ data, label }: Props) {
           value={Intl.NumberFormat(navigator.language, {
             style: 'currency',
             currency: 'MIM',
-          }).format(data[data.length - 1] * 7000)}
+          }).format(data[data.length - 1] * priceInMIM)}
           label={`MIM Value after ${data.length / 3} days`}
         />
       </div>
