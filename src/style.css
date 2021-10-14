@@ -57,7 +57,7 @@
   }
 
   .data-container {
-    @apply mt-12 grid grid-cols-3 gap-12;
+    @apply mt-12 grid grid-cols-1 2xl:grid-cols-3 gap-12;
   }
 
   .data {
@@ -65,7 +65,7 @@
   }
 
   .data-point {
-    @apply rounded shadow p-12;
+    @apply rounded shadow p-3 2xl:p-6;
     @apply bg-gray-100 dark:bg-gray-700;
   }
 }
