@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import { Data } from './components/Data'
+import { Chart } from './components/Chart'
+import { DataContainer } from './components/DataContainer'
 import { Form } from './components/Form'
 import { Header } from './components/Header'
 
@@ -8,7 +9,8 @@ export function App() {
     <div className={clsx('container')}>
       <Header />
       <Form />
-      <Data />
+      <DataContainer />
+      <Chart />
     </div>
   )
 }

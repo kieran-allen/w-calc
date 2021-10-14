@@ -3,7 +3,7 @@ import clsx from 'clsx'
 export function Header() {
   return (
     <header className={clsx('header')}>
-      <h1>🐸 W-CALC</h1>
+      <h1>W-CALC</h1>
       <p>
         A calculator to help us all understand the potential returns from
         staking{' '}

@@ -1,32 +1,29 @@
 import clsx from 'clsx'
-import { useContext } from 'react'
-import { CompoundContext } from '../context/CompoundContext'
+import { DataPoint } from './DataPoint'
 
-export function Data() {
-  const { compound } = useContext(CompoundContext)
-  console.info(compound)
-  return compound.length ? (
-    <div className={clsx('data')}>
-      <div className={clsx('data-point')}>
-        <h3 className={clsx('font-bold')}>Days</h3>
-        <h4>{Math.ceil(compound.length / 3)}</h4>
-      </div>
-      <div className={clsx('data-point')}>
-        <h3 className={clsx('font-bold')}>Epoch</h3>
-        <h4>{compound.length}</h4>
-      </div>
-      <div className={clsx('data-point')}>
-        <h3 className={clsx('font-bold')}>MEMO at epoch {compound.length}</h3>
-        <h4>{compound[compound.length - 1].toFixed(4)}</h4>
-      </div>
-      <div className={clsx('data-point')}>
-        <h3 className={clsx('font-bold')}>USD Value at epoch {compound.length}</h3>
-        <h4>
-          {Intl.NumberFormat('en-US', {
+type Props = {
+  data: number[]
+  label: string
+}
+
+export function Data({ data, label }: Props) {
+  return data.length ? (
+    <div>
+      <h2 className={clsx('mb-3')}>{label}</h2>
+      <div className={clsx('data')}>
+        <DataPoint value={Math.ceil(data.length / 3)} label="Days" />
+        <DataPoint value={data.length} label="Number of epochs" />
+        <DataPoint
+          value={data[data.length - 1].toFixed(4)}
+          label={`MEMO after ${data.length / 3} days`}
+        />
+        <DataPoint
+          value={Intl.NumberFormat(navigator.language, {
             style: 'currency',
-            currency: 'USD',
-          }).format(compound[compound.length - 1] * 7000)}
-        </h4>
+            currency: 'MIM',
+          }).format(data[data.length - 1] * 7000)}
+          label={`MIM Value after ${data.length / 3} days`}
+        />
       </div>
     </div>
   ) : null

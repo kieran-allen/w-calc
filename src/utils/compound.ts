@@ -1,25 +1,38 @@
+import { Compound } from '../types/CompoundContext'
+import { minusPercent } from './minusPercent'
+
 type CompoundProps = {
-  compound: number[]
+  compound: Compound
   reward: number
-  desired: number
+  days: number
 }
 
-export function compound({
-  compound: [head, ...tail],
-  reward,
-  desired,
-}: CompoundProps): number[] {
-  if (!reward || !head || !desired) {
-    return []
-  }
+const newHead = (r: number, h: number) => (h / 100) * r + h
 
-  if (head >= desired) {
-    return [head, ...tail].reverse()
+export function compound({
+  compound: {
+    less0: [head, ...tail],
+    less21: [l21Head, ...l21Tail],
+    less55: [l55Head, ...l55Tail],
+  },
+  reward,
+  days,
+}: CompoundProps): Compound {
+  if (days === 1) {
+    return {
+      less0: [head, ...tail].reverse(),
+      less21: [l21Head, ...l21Tail].reverse(),
+      less55: [l55Head, ...l55Tail].reverse(),
+    }
   }
 
   return compound({
-    compound: [(head / 100) * reward + head, head, ...tail],
+    compound: {
+      less0: [newHead(reward, head), head, ...tail],
+      less21: [newHead(minusPercent(20, reward), l21Head), l21Head, ...l21Tail],
+      less55: [newHead(minusPercent(50, reward), l55Head), l55Head, ...l55Tail],
+    },
     reward,
-    desired,
+    days: days - 1,
   })
 }

@@ -1,13 +1,13 @@
 import React, { createContext, useState } from 'react'
-
-export type CompoundContextType = {
-  compound: number[]
-  setCompound: React.Dispatch<React.SetStateAction<number[]>>
-}
+import type { Compound, CompoundContextType } from '../types/CompoundContext'
 
 export const CompoundContext = createContext<CompoundContextType>({
-  compound: [],
-  setCompound: n => null,
+  compound: {
+    less0: [],
+    less21: [],
+    less55: [],
+  },
+  setCompound: () => null,
 })
 
 export function CompoundContextProvider({
@@ -15,7 +15,11 @@ export function CompoundContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [compound, setCompound] = useState<number[]>([])
+  const [compound, setCompound] = useState<Compound>({
+    less0: [],
+    less21: [],
+    less55: [],
+  })
   return (
     <CompoundContext.Provider value={{ compound, setCompound }}>
       {children}

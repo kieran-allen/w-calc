@@ -1,54 +1,42 @@
-import clsx from 'clsx'
 import { useContext } from 'react'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { CompoundContext } from '../context/CompoundContext'
 import type { Form } from '../types/Form'
 import { compound } from '../utils/compound'
+import { FormInput } from './FormInput'
 
 export function Form() {
-  const { register, handleSubmit } = useForm<Form>({
+  const form = useForm<Form>({
     defaultValues: {
       currentMemo: 2.7,
       rewardYieldPerEpoch: 0.5684,
-      desiredMemo: 1000,
+      days: 360,
     },
   })
   const { setCompound } = useContext(CompoundContext)
 
-  function onSubmit({ currentMemo, rewardYieldPerEpoch, desiredMemo }: Form) {
+  function onSubmit({ currentMemo, rewardYieldPerEpoch, days }: Form) {
     setCompound(
       compound({
-        compound: [currentMemo],
+        compound: {
+          less0: [currentMemo],
+          less21: [currentMemo],
+          less55: [currentMemo],
+        },
         reward: rewardYieldPerEpoch,
-        desired: desiredMemo,
+        days: days * 3,
       }),
     )
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={clsx('input-container')}>
-        <label htmlFor="current-memo">Current MEMO</label>
-        <input
-          id="current-memo"
-          {...register('currentMemo', { valueAsNumber: true })}
-        />
-      </div>
-      <div className={clsx('input-container')}>
-        <label htmlFor="memo-epoch">Reward Yield/Epoch</label>
-        <input
-          id="memo-epoch"
-          {...register('rewardYieldPerEpoch', { valueAsNumber: true })}
-        />
-      </div>
-      <div className={clsx('input-container')}>
-        <label htmlFor="desired-memo">Desired MEMO</label>
-        <input
-          id="desired-memo"
-          {...register('desiredMemo', { valueAsNumber: true })}
-        />
-      </div>
-      <input type="submit" value="Calculate" />
-    </form>
+    <FormProvider {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <FormInput label="Current Memo" name="currentMemo" />
+        <FormInput label="Reward Yield/Epoch" name="rewardYieldPerEpoch" />
+        <FormInput label="Days" name="days" />
+        <input type="submit" value="Calculate" />
+      </form>
+    </FormProvider>
   )
 }

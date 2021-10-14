@@ -5,7 +5,7 @@
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": "error",
-    "max-lines": ["error", 50],
+    "max-lines": ["error", 100],
     "no-unneeded-ternary": "warn"
   }
 }
