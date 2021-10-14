@@ -11,7 +11,7 @@
     @apply text-black dark:text-white;
   }
   body {
-    @apply mt-12 bg-gradient-to-r;
+    @apply my-12 bg-gradient-to-r;
     @apply from-blue-600 to-purple-500;
     @apply dark:from-gray-900 dark:to-gray-900;
   }

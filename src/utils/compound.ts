@@ -18,6 +18,13 @@ export function compound({
   reward,
   days,
 }: CompoundProps): Compound {
+  if (!head || !reward || !days) {
+    return {
+      less0: [],
+      less21: [],
+      less55: [],
+    }
+  }
   if (days === 1) {
     return {
       less0: [head, ...tail].reverse(),

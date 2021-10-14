@@ -8,16 +8,21 @@ export function DataContainer() {
   const {
     compound: { less0, less21, less55 },
   } = useContext(CompoundContext)
-  const { data: wonderlandData } = useGetWonderlandDataQuery()
-
-  const priceInMIM = wonderlandData?.market_data.current_price['usd'] ?? 0
-
+  const { data: priceInMIM = 0 } = useGetWonderlandDataQuery()
 
   return (
     <div className={clsx('data-container')}>
       <Data priceInMIM={priceInMIM} data={less0} label="At current rate" />
-      <Data priceInMIM={priceInMIM} data={less21} label="At -21% current rate" />
-      <Data priceInMIM={priceInMIM} data={less55} label="At -55% current rate" />
+      <Data
+        priceInMIM={priceInMIM}
+        data={less21}
+        label="At -21% current rate"
+      />
+      <Data
+        priceInMIM={priceInMIM}
+        data={less55}
+        label="At -55% current rate"
+      />
     </div>
   )
 }

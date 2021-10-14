@@ -20,10 +20,9 @@ export function Data({ data, label, priceInMIM }: Props) {
           label={`MEMO after ${data.length / 3} days`}
         />
         <DataPoint
-          value={Intl.NumberFormat(navigator.language, {
-            style: 'currency',
-            currency: 'MIM',
-          }).format(data[data.length - 1] * priceInMIM)}
+          value={Intl.NumberFormat(navigator.language).format(
+            data[data.length - 1] * priceInMIM,
+          )}
           label={`MIM Value after ${data.length / 3} days`}
         />
       </div>

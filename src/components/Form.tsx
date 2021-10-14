@@ -8,9 +8,9 @@ import { FormInput } from './FormInput'
 export function Form() {
   const form = useForm<Form>({
     defaultValues: {
-      currentMemo: 2.7,
-      rewardYieldPerEpoch: 0.5684,
-      days: 360,
+      currentMemo: 0,
+      rewardYieldPerEpoch: 0,
+      days: 0,
     },
   })
   const { setCompound } = useContext(CompoundContext)
