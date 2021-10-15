@@ -15,7 +15,11 @@ export function FormInput({ name, label }: FormInputProps) {
   return (
     <div className={clsx('input-container')}>
       <label htmlFor={id}>{label}</label>
-      <input id={id} {...register(name, { valueAsNumber: true })} />
+      <input
+        id={id}
+        type="text"
+        {...register(name, { valueAsNumber: true })}
+      />
     </div>
   )
 }
