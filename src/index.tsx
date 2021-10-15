@@ -9,6 +9,7 @@ import MemoContract from './constants/MemoContract.json'
 
 import './style.css'
 import { ContractProvider } from './context/ContractContext'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 const anchor = document.getElementById('app')
 
@@ -28,9 +29,13 @@ render(
       <ContractProvider
         contractAddress={MemoContract.address}
         contractABI={MemoContract.abi}
+        contractKey="MemoContract"
       >
         <CompoundContextProvider>
-          <App />
+          <BrowserRouter>
+            <Route path="/" render={() => <h1>hi</h1>} />
+            <Route path="/:address" render={() => <App />} />
+          </BrowserRouter>
         </CompoundContextProvider>
       </ContractProvider>
     </EthersProvider>

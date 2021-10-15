@@ -1,24 +1,29 @@
 import { useContext, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useParams } from 'react-router'
 import { CompoundContext } from '../context/CompoundContext'
-import { useGetMemoBalanceQuery } from '../hooks/useGetMemoBalanceQuery'
+import { useGetMemoContractDataQuery } from '../hooks/useGetMemoContractDataQuery'
+import { useGetStakingEpochYieldQuery } from '../hooks/useGetStakingEpochYieldQuery'
 import type { Form } from '../types/Form'
 import { compound } from '../utils/compound'
 import { FormInput } from './FormInput'
 
 export function Form() {
-  const { data } = useGetMemoBalanceQuery()
+  const { address } = useParams<{ address: string }>()
+  const { data: memo } = useGetMemoContractDataQuery(address)
+  const { data: yee } = useGetStakingEpochYieldQuery(address)
   const form = useForm<Form>({
     defaultValues: {
-      currentMemo: data ?? 0,
-      rewardYieldPerEpoch: 0,
-      days: 0,
+      currentMemo: memo?.balance ?? 0,
+      rewardYieldPerEpoch: yee ?? 0,
+      days: 365,
     },
   })
 
   useEffect(() => {
-    form.setValue('currentMemo', data ?? 0)
-  }, [data])
+    form.setValue('currentMemo', memo?.balance ?? 0)
+    form.setValue('rewardYieldPerEpoch', yee ?? 0)
+  }, [memo?.balance, yee])
 
   const { setCompound } = useContext(CompoundContext)
 
