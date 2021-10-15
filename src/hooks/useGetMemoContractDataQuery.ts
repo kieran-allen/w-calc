@@ -20,7 +20,7 @@ export function useGetMemoContractDataQuery(address: string): UseQueryResult<
   const { getContract, setContract } = useContext(ContractContext)
   const contract = getContract('MemoContract')
   return useQuery(
-    'get-memo-balance',
+    `get-memo-balance-${address}`,
     async () => {
       const stakingContract: string = contract?.stakingContract()
       const balance: BigNumber = contract?.balanceOf(

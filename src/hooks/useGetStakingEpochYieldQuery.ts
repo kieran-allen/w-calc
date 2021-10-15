@@ -11,7 +11,7 @@ export function useGetStakingEpochYieldQuery(address: string) {
   const contract = getContract('StakingContract')
 
   return useQuery(
-    'get-epoch',
+    `get-epoch-${address}`,
     async () => {
       const { distribute }: { [key: string]: BigNumber } =
         await contract?.epoch()

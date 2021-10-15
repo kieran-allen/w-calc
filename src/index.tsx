@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { getWonderlandData } from './api/getWonderlandData'
-import { App } from './App'
+import { App } from './routes/App'
 import { CompoundContextProvider } from './context/CompoundContext'
 import { EthersProvider } from './context/EthersContext'
 
@@ -10,6 +10,7 @@ import MemoContract from './constants/MemoContract.json'
 import './style.css'
 import { ContractProvider } from './context/ContractContext'
 import { BrowserRouter, Route } from 'react-router-dom'
+import { Home } from './routes/Home'
 
 const anchor = document.getElementById('app')
 
@@ -33,8 +34,8 @@ render(
       >
         <CompoundContextProvider>
           <BrowserRouter>
-            <Route path="/" render={() => <h1>hi</h1>} />
-            <Route path="/:address" render={() => <App />} />
+            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/:address" render={() => <App />} />
           </BrowserRouter>
         </CompoundContextProvider>
       </ContractProvider>
