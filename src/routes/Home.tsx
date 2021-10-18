@@ -28,12 +28,22 @@ export function Home() {
     <div className={clsx('container')}>
       <Header />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="public-address">Public address:</label>
+        <label htmlFor="public-address">
+          Public address:
+          <p className={clsx('text-xs')}>
+            Enter a public address to fetch the memo value for that given
+            address. Alternatively, leave the address as is and manually change
+            values on the next page.
+          </p>
+        </label>
+
         <input
           id="public-address"
           type="text"
           placeholder="0x..."
-          {...register('publicAddress')}
+          {...register('publicAddress', {
+            value: '0x0000000000000000000000000000000000000000',
+          })}
         />
         <input type="submit" value="Go" />
       </form>
